@@ -15,7 +15,7 @@ const sideBarContent = [
   { icon: "human", itemName: "About", itemRoute: "#about", activeClass: "" },
   {
     icon: "service",
-    itemName: "Service",
+    itemName: "Area of Expertise",
     itemRoute: "#service",
     activeClass: "",
   },
