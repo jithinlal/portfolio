@@ -4,6 +4,10 @@ const skillsContent = [
     skillPercent: "95",
   },
   {
+    name: "Redux",
+    skillPercent: "90",
+  },
+  {
     name: "Nodejs",
     skillPercent: "90",
   },
@@ -14,6 +18,10 @@ const skillsContent = [
   {
     name: "Database",
     skillPercent: "85",
+  },
+  {
+    name: "NextJs",
+    skillPercent: "70",
   },
   {
     name: "AWS",

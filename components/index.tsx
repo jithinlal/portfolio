@@ -6,6 +6,7 @@ import Service from "./Service";
 import Testimonials from "./Testimonials";
 import Blog from "./Blog";
 import Contact from "./Contact";
+import Portfolio from "./Portfolio";
 
 const Home = () => {
   useEffect(() => {
@@ -17,24 +18,9 @@ const Home = () => {
       <Hero />
       <About />
       <Service />
-
-      <div className="edina_tm_portfolio" id="portfolio">
-        <div className="container">
-          <div className="edina_tm_title">
-            <h3>Portfolio</h3>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
-              ipsum sit nibh amet egestas tellus.
-            </p>
-          </div>
-
-          {/*<Portfolio />*/}
-        </div>
-      </div>
-
+      <Portfolio />
       <Testimonials />
       <Blog />
-
       <Contact />
     </div>
   );

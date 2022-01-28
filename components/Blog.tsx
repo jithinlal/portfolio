@@ -1,19 +1,27 @@
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
+import ReactHtmlParser from "react-html-parser";
+import {
+  FacebookShareButton,
+  FacebookIcon,
+  LinkedinShareButton,
+  PocketShareButton,
+  TwitterShareButton,
+  WhatsappShareButton,
+  LinkedinIcon,
+  PocketIcon,
+  TwitterIcon,
+  WhatsappIcon,
+} from "react-share";
 import Modal from "react-modal";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import "swiper/css/effect-coverflow";
-import SwiperCore, {
-  Navigation,
-  Pagination,
-  Autoplay,
-  EffectCoverflow,
-} from "swiper";
+
+import SwiperCore, { Navigation, Pagination } from "swiper";
 import dayjs from "dayjs";
 
-SwiperCore.use([Navigation, Pagination, Autoplay, EffectCoverflow]);
+SwiperCore.use([Navigation, Pagination]);
 
 interface Post {
   id: string;
@@ -28,6 +36,7 @@ Modal.setAppElement("#blog");
 const Blog = () => {
   const [posts, setPosts] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
+  const [blog, setBlog] = useState<Post | null>(null);
   useEffect(() => {
     fetch(
       "https://www.googleapis.com/blogger/v3/blogs/8036422199805021206/posts?key=AIzaSyANvPLTLY3cHrBL3qD4Sy2-WVVJH4qNI-k&maxResults=6"
@@ -49,30 +58,6 @@ const Blog = () => {
         );
       });
   }, []);
-
-  const settings = {
-    dots: false,
-    arrow: true,
-    infinite: true,
-    speed: 800,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    autoplay: false,
-    draggable: false,
-    responsive: [
-      {
-        breakpoint: 575,
-        settings: {
-          slidesToShow: 1,
-          arrow: false,
-          autoplay: false,
-          speed: 300,
-          draggable: true,
-          dots: true,
-        },
-      },
-    ],
-  };
 
   function toggleModal() {
     setIsOpen(!isOpen);
@@ -103,17 +88,18 @@ const Blog = () => {
           <ul>
             <Swiper
               navigation={true}
-              autoplay={{
-                delay: 2500,
-                disableOnInteraction: false,
-              }}
               loop={true}
               slidesPerView={3}
-              effect={"coverflow"}
               className="mySwiper"
             >
               {posts.map((post: Post, index) => (
-                <SwiperSlide key={index}>
+                <SwiperSlide
+                  key={index}
+                  onClick={() => {
+                    setBlog(post);
+                    toggleModal();
+                  }}
+                >
                   <li
                     data-aos="fade-right"
                     data-aos-duration="1200"
@@ -126,20 +112,15 @@ const Blog = () => {
                           className="main"
                           style={{
                             backgroundImage: `url(
-                          "https://random.imagecdn.app/500/150"
+                          "https://source.unsplash.com/random/?tech"
                         )`,
                           }}
                         />
                       </div>
 
                       <div className="news_details">
-                        <span>
-                          {post.updated}
-                          {/*<a href="#">Design</a>*/}
-                        </span>
-                        <h3 className="title" onClick={toggleModal}>
-                          {post.title}
-                        </h3>
+                        <span>{post.updated}</span>
+                        <h3 className="title">{post.title}</h3>
                       </div>
                     </div>
                   </li>
@@ -148,96 +129,62 @@ const Blog = () => {
             </Swiper>
           </ul>
 
-          <Modal
-            isOpen={isOpen}
-            onRequestClose={toggleModal}
-            contentLabel="My dialog"
-            className="custom-modal"
-            overlayClassName="custom-overlay"
-            closeTimeoutMS={500}
-          >
-            <div className="edina_tm_modalbox">
-              <button className="close-modal" onClick={toggleModal}>
-                <img src={"/img/svg/cancel.svg"} alt="close icon" />
-              </button>
-              <div className="box_inner">
-                <div className="description_wrap scrollable">
-                  <div className="image">
-                    <img src={"/img/placeholders/4-3.jpg"} alt="thumb" />
-                    <div
-                      className="main"
-                      style={{
-                        backgroundImage: `url("/img/news/4.jpg")`,
-                      }}
-                    />
-                  </div>
-
-                  <div className="news_details">
-                    <span>
-                      April 07,2021 <a href="#">Design</a>
-                    </span>
-                    <h3 className="title">Forzo Immobile</h3>
-                  </div>
-
-                  <div className="main_content">
-                    <div className="descriptions">
-                      <p>
-                        Just because we cant get out and about like we normally
-                        would, doesn’t mean we have to stop taking pictures.
-                        There’s still plenty you can do, provided youre prepared
-                        to use some imagination. Here are a few ideas to keep
-                        you shooting until normal life resumes.
-                      </p>
-                      <p>
-                        Most photographers love to shoot the unusual, and you
-                        don’t get much more unusual than These Unprecedented
-                        Times. Right now everything counts as out of the
-                        ordinary. There are a number of remarkable things about
-                        these lockdown days that are worth photographing now so
-                        we can remember them when it is all over.
-                      </p>
-                      <p>
-                        Streets empty that are usually busy are remarkable and
-                        can evoke the sense of historical pictures from before
-                        the invention of the motorcar. Other things that are
-                        different at the moment will be queues to get into
-                        stores and the lines marked out on the floor to show how
-                        far apart we should be.
-                      </p>
-                      <div className="quotebox">
-                        <p>
-                          Most photographers find it hard to see interesting
-                          pictures in places in which they are most familiar. A
-                          trip somewhere new seems always exactly what our
-                          photography needed, as shooting away from home
-                          consistently inspires us to new artistic heights.
-                        </p>
-                      </div>
-                      <p>
-                        Pretend everything is new and that you haven’t seen it
-                        before, and then you will be free to notice the leading
-                        lines, the places where one edge meets another in
-                        delightful geometric harmony, and how the ordinary
-                        things in the kitchen are transformed when the light is
-                        on or off.
-                      </p>
-                      <p>
-                        The trick here is to look slowly, and then look again.
-                        Take the time to look in detail and to look at the same
-                        thing from different angles, with different light, long
-                        lenses and wide lenses. Then move to the left a bit. You
-                        may never feel the need to leave the house again.
-                      </p>
+          {blog && (
+            <Modal
+              isOpen={isOpen}
+              onRequestClose={toggleModal}
+              contentLabel="My dialog"
+              className="custom-modal"
+              overlayClassName="custom-overlay"
+              closeTimeoutMS={500}
+            >
+              <div className="edina_tm_modalbox">
+                <button className="close-modal" onClick={toggleModal}>
+                  <img src={"/img/svg/cancel.svg"} alt="close icon" />
+                </button>
+                <div className="box_inner">
+                  <div className="description_wrap scrollable">
+                    <div className="image">
+                      <img src={"/img/placeholders/4-3.jpg"} alt="thumb" />
+                      <div
+                        className="main"
+                        style={{
+                          backgroundImage: `url("https://source.unsplash.com/random/?tech")`,
+                        }}
+                      />
                     </div>
-                    <div className="news_share ">
-                      <span>Share:</span>
-                      Social
+                    <div className="news_details">
+                      <span>{blog.updated}</span>
+                      <h3 className="title">{blog.title}</h3>
+                    </div>
+
+                    <div className="main_content">
+                      <div className="descriptions">
+                        {ReactHtmlParser(blog.content)}
+                      </div>
+                      <div className="news_share custom-style">
+                        <FacebookShareButton url={blog.url} quote={blog.title}>
+                          <FacebookIcon round={true} size={32} />
+                        </FacebookShareButton>
+                        <LinkedinShareButton url={blog.url} title={blog.title}>
+                          <LinkedinIcon round={true} size={32} />
+                        </LinkedinShareButton>
+                        <PocketShareButton url={blog.url} title={blog.title}>
+                          <PocketIcon round={true} size={32} />
+                        </PocketShareButton>
+                        <TwitterShareButton url={blog.url} title={blog.title}>
+                          <TwitterIcon round={true} size={32} />
+                        </TwitterShareButton>
+                        <WhatsappShareButton url={blog.url} title={blog.title}>
+                          <WhatsappIcon round={true} size={32} />
+                        </WhatsappShareButton>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </Modal>
+            </Modal>
+          )}
         </div>
       </div>
     </div>
