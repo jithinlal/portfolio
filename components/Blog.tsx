@@ -1,9 +1,19 @@
 import { useEffect, useState } from "react";
 import Modal from "react-modal";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/effect-coverflow";
+import SwiperCore, {
+  Navigation,
+  Pagination,
+  Autoplay,
+  EffectCoverflow,
+} from "swiper";
 import dayjs from "dayjs";
+
+SwiperCore.use([Navigation, Pagination, Autoplay, EffectCoverflow]);
 
 interface Post {
   id: string;
@@ -75,45 +85,67 @@ const Blog = () => {
           <h3>Blog</h3>
           <p>
             I write blogs occasionally. Mainly on things that I experienced on a
-            professional level. Here are some of them:
+            professional level. You can read them at my blog{" "}
+            <a
+              href="https://jithin-lal.blogspot.com"
+              target="_blank"
+              rel="noreferrer"
+              style={{
+                textDecoration: "none",
+              }}
+            >
+              <span style={{ color: "red" }}>Facade</span>
+            </a>
+            . Here are some of them:
           </p>
         </div>
         <div className="news_inner my_carousel">
           <ul>
-            <Slider {...settings}>
+            <Swiper
+              navigation={true}
+              autoplay={{
+                delay: 2500,
+                disableOnInteraction: false,
+              }}
+              loop={true}
+              slidesPerView={3}
+              effect={"coverflow"}
+              className="mySwiper"
+            >
               {posts.map((post: Post, index) => (
-                <li
-                  data-aos="fade-right"
-                  data-aos-duration="1200"
-                  key={index}
-                  data-aos-delay={(index * 150).toString()}
-                >
-                  <div className="list_inner">
-                    <div className="image" onClick={toggleModal}>
-                      <img src={"/img/placeholders/4-3.jpg"} alt="thumb" />
-                      <div
-                        className="main"
-                        style={{
-                          backgroundImage: `url(
-                          "/img/news/2.jpg"
+                <SwiperSlide key={index}>
+                  <li
+                    data-aos="fade-right"
+                    data-aos-duration="1200"
+                    data-aos-delay={(index * 150).toString()}
+                  >
+                    <div className="list_inner">
+                      <div className="image" onClick={toggleModal}>
+                        <img src={"/img/placeholders/4-3.jpg"} alt="thumb" />
+                        <div
+                          className="main"
+                          style={{
+                            backgroundImage: `url(
+                          "https://random.imagecdn.app/500/150"
                         )`,
-                        }}
-                      />
-                    </div>
+                          }}
+                        />
+                      </div>
 
-                    <div className="news_details">
-                      <span>
-                        {post.updated}
-                        {/*<a href="#">Design</a>*/}
-                      </span>
-                      <h3 className="title" onClick={toggleModal}>
-                        {post.title}
-                      </h3>
+                      <div className="news_details">
+                        <span>
+                          {post.updated}
+                          {/*<a href="#">Design</a>*/}
+                        </span>
+                        <h3 className="title" onClick={toggleModal}>
+                          {post.title}
+                        </h3>
+                      </div>
                     </div>
-                  </div>
-                </li>
+                  </li>
+                </SwiperSlide>
               ))}
-            </Slider>
+            </Swiper>
           </ul>
 
           <Modal
@@ -139,7 +171,6 @@ const Blog = () => {
                       }}
                     />
                   </div>
-                  {/* End image */}
 
                   <div className="news_details">
                     <span>
@@ -147,7 +178,6 @@ const Blog = () => {
                     </span>
                     <h3 className="title">Forzo Immobile</h3>
                   </div>
-                  {/* End details */}
 
                   <div className="main_content">
                     <div className="descriptions">

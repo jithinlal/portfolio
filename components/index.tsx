@@ -5,6 +5,7 @@ import About from "./About";
 import Service from "./Service";
 import Testimonials from "./Testimonials";
 import Blog from "./Blog";
+import Contact from "./Contact";
 
 const Home = () => {
   useEffect(() => {
@@ -34,43 +35,7 @@ const Home = () => {
       <Testimonials />
       <Blog />
 
-      <div className="edina_tm_contact" id="contact">
-        <div className="container">
-          <div className="edina_tm_title">
-            <h3>Contact</h3>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
-              ipsum sit nibh amet egestas tellus.
-            </p>
-          </div>
-          <div className="extra_info">{/*<Address />*/}</div>
-          <div className="mainpart">
-            <div
-              className="left"
-              data-aos="fade-right"
-              data-aos-duration="1200"
-              data-aos-delay="300"
-            >
-              <div className="title">
-                <p>
-                  I am always open to discussing product
-                  <br />
-                  <span> design work or partnerships.</span>
-                </p>
-              </div>
-              <div className="fields">{/*<Contact />*/}</div>
-            </div>
-            <div
-              className="right"
-              data-aos="fade-right"
-              data-aos-duration="1200"
-              data-aos-delay="400"
-            >
-              {/*<Map />*/}
-            </div>
-          </div>
-        </div>
-      </div>
+      <Contact />
     </div>
   );
 };
