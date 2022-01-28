@@ -3,6 +3,8 @@ import Hero from "./Hero";
 import { useEffect } from "react";
 import About from "./About";
 import Service from "./Service";
+import Testimonials from "./Testimonials";
+import Blog from "./Blog";
 
 const Home = () => {
   useEffect(() => {
@@ -29,33 +31,8 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="edina_tm_testimonials" id="testimonial">
-        <div className="container">
-          <div className="edina_tm_title">
-            <h3>Testimonials</h3>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
-              ipsum sit nibh amet egestas tellus.
-            </p>
-          </div>
-          <div className="list ">
-            <ul>{/*<Testimonial />*/}</ul>
-          </div>
-        </div>
-      </div>
-
-      <div className="edina_tm_news" id="blog">
-        <div className="container">
-          <div className="edina_tm_title">
-            <h3>Blog</h3>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
-              ipsum sit nibh amet egestas tellus.
-            </p>
-          </div>
-          {/*<Blog />*/}
-        </div>
-      </div>
+      <Testimonials />
+      <Blog />
 
       <div className="edina_tm_contact" id="contact">
         <div className="container">
