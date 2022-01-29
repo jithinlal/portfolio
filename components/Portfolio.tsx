@@ -3,59 +3,47 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/effect-coverflow";
+import "swiper/css/effect-cards";
 import SwiperCore, { Navigation, Pagination, Autoplay } from "swiper";
-// import ReactTooltip from "react-tooltip";
 
 SwiperCore.use([Navigation, Pagination, Autoplay]);
 
 const projects = [
   {
     img: 1,
-    name: "CBRE",
-    category: "CMS",
-    link: "https://www.cbre.com/",
+    name: "Github Battle",
+    link: "https://battle.jithinlal.dev/",
+    technologies: ["react", "react router", "GitHub api", "netlify", "redux"],
   },
   {
     img: 2,
-    name: "Connexa",
-    category: "Device Dashboard",
-    link: "https://www.connexa.com/",
+    name: "Todo",
+    link: "https://todo.jithinlal.dev/",
+    technologies: ["firebase", "heroku", "nodejs", "elephantsql", "postgres"],
   },
   {
     img: 3,
-    name: "NextPort",
-    category: "Building Management Solution",
-    link: "https://www.nextportapp.com/",
-  },
-  {
-    img: 4,
-    name: "ENA Solution",
-    category: "PWA web app",
-    link: "https://enasolution.com/",
-  },
-  {
-    img: 5,
-    name: "Nucleonix",
-    category: "Hybrid mobile app",
-    link: "https://www.nucleonix.com/",
-  },
-  {
-    img: 6,
-    name: "All My Trainers",
-    category: "Streaming service",
-    link: "https://www.allmytrainers.com/",
+    name: "Trade",
+    link: "https://trade.jithinlal.dev/",
+    technologies: ["react", "firebase", "firestore", "chartjs"],
   },
 ];
 
 const Portfolio = () => {
   return (
-    <div className="edina_tm_portfolio" id="portfolio">
+    <div
+      className="edina_tm_portfolio"
+      id="portfolio"
+      style={{
+        backgroundColor: "#f5f8fc",
+      }}
+    >
       <div className="container">
         <div className="edina_tm_title">
           <h3>Portfolio</h3>
           <p>
-            Here are some of the clients I proudly worked with during my course
-            of professional career, to produce world class products:
+            Checkout some of my cool works that I did, while learning a lot of
+            the technologies that I am familiar with today:
           </p>
         </div>
         <div className="portfolio_inner my_carousel gallery_zoom">
@@ -82,29 +70,19 @@ const Portfolio = () => {
                           className="details"
                         >
                           <img
-                            src={`/img/portfolio/${project.img}.png`}
-                            data-tip={project.category}
-                            data-for={project.category}
+                            src={`/img/projects/${project.img}.png`}
                             alt="portfolio"
                           />
-                          {/*<ReactTooltip*/}
-                          {/*  id={project.category}*/}
-                          {/*  place="top"*/}
-                          {/*  type="info"*/}
-                          {/*  effect="float"*/}
-                          {/*  className="tooltip-wrapper"*/}
-                          {/*  key={index}*/}
-                          {/*>*/}
-                          {/*  <div>*/}
-                          {/*    <h5>{project.name}</h5>*/}
-                          {/*    <span>{project.category}</span>*/}
-                          {/*  </div>*/}
-                          {/*</ReactTooltip>*/}
                         </a>
-                      </div>
-                      <div className="news_details">
-                        <span>{project.category}</span>
-                        <h3 className="title">{project.name}</h3>
+                        <div className="news_details">
+                          <span
+                            style={{
+                              padding: 5,
+                            }}
+                          >
+                            {project.technologies.join(", ")}
+                          </span>
+                        </div>
                       </div>
                     </div>
                   </li>
