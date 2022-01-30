@@ -27,6 +27,12 @@ const projects = [
     link: "https://trade.jithinlal.dev/",
     technologies: ["react", "firebase", "firestore", "chartjs"],
   },
+  {
+    img: 4,
+    name: "XandY",
+    link: "https://xandy.jithinlal.dev/",
+    technologies: ["react", "reducer", "javascript", "supabase", "react-hooks"],
+  },
 ];
 
 const Portfolio = () => {
