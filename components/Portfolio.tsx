@@ -33,6 +33,19 @@ const projects = [
     link: "https://xandy.jithinlal.dev/",
     technologies: ["react", "reducer", "javascript", "supabase", "react-hooks"],
   },
+  {
+    img: 5,
+    name: "Korpus",
+    link: "https://korpus.jithinlal.dev/",
+    technologies: [
+      "react",
+      "zustand",
+      "nextjs",
+      "supabase",
+      "chakra-ui",
+      "responsive-design",
+    ],
+  },
 ];
 
 const Portfolio = () => {
