@@ -1,5 +1,9 @@
 import { Fragment } from "react";
+import dayjs from "dayjs";
+import RelativeTime from "dayjs/plugin/relativeTime";
 import Social from "./Social";
+
+dayjs.extend(RelativeTime);
 
 const heroContent = {
   shapeImage: "hero-shape",
@@ -8,10 +12,11 @@ const heroContent = {
   description: (
     <Fragment>
       Hi, I am <b>Jithin</b>. A <b>team lead</b> and a{" "}
-      <b>full stack web developer</b> with more than <b>5 years</b> of
-      experience, who loves to work with javascript libraries and frameworks
-      such as <i>Node.js</i> and <i>Reactjs</i>. And always on a lookout for new
-      challenges and things to learn...
+      <b>full stack web developer</b> with more than{" "}
+      <b>{dayjs("2017-10-01").fromNow(true)}</b> of experience, who loves to
+      work with javascript libraries and frameworks such as <i>Node.js</i> and{" "}
+      <i>Reactjs</i>. And always on a lookout for new challenges and things to
+      learn...
     </Fragment>
   ),
 };

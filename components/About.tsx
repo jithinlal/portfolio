@@ -1,7 +1,11 @@
 import { useState } from "react";
 import Modal from "react-modal";
+import dayjs from "dayjs";
+import RelativeTime from "dayjs/plugin/relativeTime";
 import Skills from "./Skills";
 import ModalContent from "./ModalContent";
+
+dayjs.extend(RelativeTime);
 
 Modal.setAppElement("#about");
 
@@ -11,6 +15,8 @@ const About = () => {
   function toggleModalOne() {
     setIsOpen(!isOpen);
   }
+
+  const experience = dayjs("2017-10-01").fromNow(true);
 
   return (
     <div className="edina_tm_about" id="about">
@@ -30,7 +36,7 @@ const About = () => {
                 Hi, I am <span>Jithinlal</span>
               </h3>
               <p>
-                I am a full stack web developer with more than 5 years of
+                I am a full stack web developer with more than {experience} of
                 experience. I am from the beautiful state of Kerala in India. I
                 code and create performant web apps for some amazing
                 people/clients around the world. I like to learn new
