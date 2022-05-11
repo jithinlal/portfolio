@@ -24,6 +24,10 @@ const skillsContent = [
     skillPercent: "70",
   },
   {
+    name: "Test driven development",
+    skillPercent: "70",
+  },
+  {
     name: "AWS",
     skillPercent: "60",
   },

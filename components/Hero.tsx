@@ -15,8 +15,9 @@ const heroContent = {
       <b>full stack web developer</b> with more than{" "}
       <b>{dayjs("2017-10-01").fromNow(true)}</b> of experience, who loves to
       work with javascript libraries and frameworks such as <i>Node.js</i> and{" "}
-      <i>Reactjs</i>. And always on a lookout for new challenges and things to
-      learn...
+      <i>Reactjs</i>. I have experience building scalable systems with test
+      driven development in mind. I am always on the lookout for new and
+      interesting challenges, and things to learn...
     </Fragment>
   ),
 };
